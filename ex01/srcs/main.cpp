@@ -6,25 +6,35 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 15:45:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/05/22 16:02:48 by sleon            ###   ########.fr       */
+/*   Updated: 2023/05/22 16:37:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
-#include <iostream>
+#include "iter.hpp"
+#include "cmath"
 
-int main( void ) {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+template<typename T>
+void	display( T &whatever )
+{
+	std::cout << "Variable's value is: " << whatever << std::endl;
+}
+
+void	setRandomValue( int &number )
+{
+	srand(time(0));
+	number = rand() % 100;
+}
+
+int	main( void )
+{
+	std::string	strArray[3];
+	int			*intArray = new int[5];
+
+	strArray[0] = "oui";
+	strArray[1] = "non";
+	strArray[2] = "Ratio manu";
+	::iter(strArray, 3, &display);
+	for (int i = 0; i < 5; i ++)
+		setRandomValue(intArray[i]);
+	::iter(intArray, 5, &display);
 }
